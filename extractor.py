@@ -27,7 +27,6 @@ def main():
     'stt-airbrake, %':'',
     }
 
-    time.sleep()
     board = pyfirmata.Arduino("COM3")
     right = board.get_pin('d:10:s')
 
@@ -35,19 +34,17 @@ def main():
     it.start()
 
     while True:
-       # elements = driver.find_element_by_id("stt-IAS, km/h")
+        # elements = driver.find_element_by_id("stt-IAS, km/h")
         #for key in states:
-        #   states[key] = driver.find_element_by_id(key).text
+        #states[key] = driver.find_element_by_id(key).text
         #print(states)
         TAS = driver.find_element_by_id('stt-TAS, km/h').text
         print(type(TAS))                   #
         nu = re.findall("(\d+)",TAS)
         print(nu)
         angle = (int(nu[0])/500)*180
+        
         right.write(angle)
-
-
-
 
 
 
